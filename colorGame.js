@@ -1,40 +1,41 @@
 var colors = generateRandomColors(6);
 var squares = document.querySelectorAll(".square");
 var picked = pickColor();
-var colorDisplay = document.getElementById('colorDisplay');
+var rgbDisplay = document.getElementById('rgbDisplay');
 var messageDisplay = document.querySelector('#message');
 var h1 = document.querySelector('h1');
 var reset = document.querySelector('#reset');
 
+//reset the game
 reset.addEventListener("click", function(){
 	colors = generateRandomColors(6);
 	picked = pickColor();
-	colorDisplay.textContent = picked;
+	messageDisplay.textContent = "Pick a color!";
+	rgbDisplay.textContent = picked;
 	for (var i = 0; i < squares.length; i++){
 		squares[i].style.backgroundColor = colors[i];
 	}
 })
 
-colorDisplay.textContent = picked;
+rgbDisplay.textContent = picked;
 
+//render the game
 for (var i = 0; i < squares.length; i++){
-	//add initial colors
 	squares[i].style.backgroundColor = colors[i];
-	//add click listeners
 	squares[i].addEventListener("click", function(){
 		var clickedColor = this.style.backgroundColor;
 		if (clickedColor === picked){
-			messageDisplay.textContent = "Correct";
+			messageDisplay.textContent = "(^o^) Correct! ";
 			changeColors(squares, picked);
-			h1.style.backgroundColor = picked;
 			reset.textContent = "Play Again";
 		} else {
-			messageDisplay.textContent = "Try Again";
+			messageDisplay.textContent = "(T_T) Try Again!";
 			this.style.backgroundColor = "#232323";
 		}
-	})	
+	})
 }
 
+/*********************** helper functions **************************/
 function randomColor(){
 	var r = Math.floor(Math.random()*256);
 	var g = Math.floor(Math.random()*256);
