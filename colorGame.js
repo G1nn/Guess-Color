@@ -6,6 +6,15 @@ var messageDisplay = document.querySelector('#message');
 var h1 = document.querySelector('h1');
 var reset = document.querySelector('#reset');
 
+reset.addEventListener("click", function(){
+	colors = generateRandomColors(6);
+	picked = pickColor();
+	colorDisplay.textContent = picked;
+	for (var i = 0; i < squares.length; i++){
+		squares[i].style.backgroundColor = colors[i];
+	}
+})
+
 colorDisplay.textContent = picked;
 
 for (var i = 0; i < squares.length; i++){
@@ -18,6 +27,7 @@ for (var i = 0; i < squares.length; i++){
 			messageDisplay.textContent = "Correct";
 			changeColors(squares, picked);
 			h1.style.backgroundColor = picked;
+			reset.textContent = "Play Again";
 		} else {
 			messageDisplay.textContent = "Try Again";
 			this.style.backgroundColor = "#232323";
