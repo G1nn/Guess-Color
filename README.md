@@ -1,2 +1,3 @@
 # Guess-Color
-Website where users play the game of guessing the correct color from a random RGB value
+A front-end game where users guess the correct color given a random RGB value, using native JavaScript.
+
